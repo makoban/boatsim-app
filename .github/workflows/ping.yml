@@ -1,0 +1,11 @@
+name: keepalive
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ping worker healthz
+        run: curl -sf --max-time 30 https://boatsim-worker.onrender.com/ || true
